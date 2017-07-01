@@ -27,7 +27,8 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>map</string>
+	dc407b8af73d2e268e89ea26071765d6c7009a1b
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

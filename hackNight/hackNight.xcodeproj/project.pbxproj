@@ -14,6 +14,8 @@
 		A90B5DF81F07985A00D444CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90B5DF71F07985A00D444CD /* Assets.xcassets */; };
 		A90B5DFB1F07985A00D444CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90B5DF91F07985A00D444CD /* LaunchScreen.storyboard */; };
 		A90B5E031F07BB6500D444CD /* SanFrancisco.otf in Resources */ = {isa = PBXBuildFile; fileRef = A90B5E021F07BB6500D444CD /* SanFrancisco.otf */; };
+		A96F42E61F0806DA00C345D8 /* map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A96F42E51F0806DA00C345D8 /* map.storyboard */; };
+		A96F42E81F08070100C345D8 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F42E71F08070100C345D8 /* mapViewController.swift */; };
 		CA59B5C51F07D1D70024069F /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5C41F07D1D70024069F /* ConversationTableViewCell.swift */; };
 		CA59B5CE1F07D78E0024069F /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5CA1F07D78E0024069F /* AppManager.swift */; };
 		CA59B5CF1F07D78E0024069F /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA59B5CB1F07D78E0024069F /* Conversation.storyboard */; };
@@ -36,6 +38,10 @@
 		A90B5DFA1F07985A00D444CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90B5DFC1F07985A00D444CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90B5E021F07BB6500D444CD /* SanFrancisco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SanFrancisco.otf; sourceTree = "<group>"; };
+		A96F42E51F0806DA00C345D8 /* map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = map.storyboard; sourceTree = "<group>"; };
+		A96F42E71F08070100C345D8 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		D6E47A1EDDA46D2C824987C5 /* Pods-hackNight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackNight.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackNight/Pods-hackNight.debug.xcconfig"; sourceTree = "<group>"; };
+		ED2B567EC1535EAB2CA0BBD9 /* Pods-hackNight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackNight.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackNight/Pods-hackNight.release.xcconfig"; sourceTree = "<group>"; };
 		CA59B5C41F07D1D70024069F /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		CA59B5CA1F07D78E0024069F /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		CA59B5CB1F07D78E0024069F /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 		93CB410A65114BF778257FD7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				D6E47A1EDDA46D2C824987C5 /* Pods-hackNight.debug.xcconfig */,
+				ED2B567EC1535EAB2CA0BBD9 /* Pods-hackNight.release.xcconfig */,
 				51C5D5799B4CA35233A5392F /* Pods-hackNight.debug.xcconfig */,
 				839315E3E97F7156CDFE0544 /* Pods-hackNight.release.xcconfig */,
 			);
@@ -106,9 +114,11 @@
 				CA59B5CB1F07D78E0024069F /* Conversation.storyboard */,
 				A90B5DF41F07985A00D444CD /* Main.storyboard */,
 				A90B5DF71F07985A00D444CD /* Assets.xcassets */,
+				A96F42E51F0806DA00C345D8 /* map.storyboard */,
 				A90B5DF91F07985A00D444CD /* LaunchScreen.storyboard */,
 				A90B5DFC1F07985A00D444CD /* Info.plist */,
 				A90B5E021F07BB6500D444CD /* SanFrancisco.otf */,
+				A96F42E71F08070100C345D8 /* mapViewController.swift */,
 			);
 			path = hackNight;
 			sourceTree = "<group>";
@@ -160,6 +170,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = CHQFTXKUY4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -188,6 +203,7 @@
 			files = (
 				A90B5DFB1F07985A00D444CD /* LaunchScreen.storyboard in Resources */,
 				A90B5E031F07BB6500D444CD /* SanFrancisco.otf in Resources */,
+				A96F42E61F0806DA00C345D8 /* map.storyboard in Resources */,
 				CA59B5CF1F07D78E0024069F /* Conversation.storyboard in Resources */,
 				A90B5DF81F07985A00D444CD /* Assets.xcassets in Resources */,
 				A90B5DF61F07985A00D444CD /* Main.storyboard in Resources */,
@@ -239,7 +255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -249,6 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A96F42E81F08070100C345D8 /* mapViewController.swift in Sources */,
+				A90B5DF31F07985A00D444CD /* ViewController.swift in Sources */,
+				A90B5DF11F07985A00D444CD /* AppDelegate.swift in Sources */,
 				A90B5DF31F07985A00D444CD /* ViewController.swift in Sources */,
 				A90B5DF11F07985A00D444CD /* AppDelegate.swift in Sources */,
 				CA59B5D11F07D78E0024069F /* User.swift in Sources */,
@@ -380,6 +399,7 @@
 		};
 		A90B5E001F07985A00D444CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6E47A1EDDA46D2C824987C5 /* Pods-hackNight.debug.xcconfig */;
 			baseConfigurationReference = 51C5D5799B4CA35233A5392F /* Pods-hackNight.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
@@ -396,6 +416,7 @@
 		};
 		A90B5E011F07985A00D444CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED2B567EC1535EAB2CA0BBD9 /* Pods-hackNight.release.xcconfig */;
 			baseConfigurationReference = 839315E3E97F7156CDFE0544 /* Pods-hackNight.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
