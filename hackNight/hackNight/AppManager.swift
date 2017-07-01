@@ -19,7 +19,6 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     var sparkService = SparkComunication()
     let locationManager = CLLocationManager()
     var friendsList = Array<Friend>()
-    let sparkService = SparkComunication()
     
     private override init() {
         
