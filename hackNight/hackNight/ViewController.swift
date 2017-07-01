@@ -13,6 +13,9 @@ import SparkSDK
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var shadowView: UIView!
+
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var tabelView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,13 +27,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
+        //self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
         conversationsArray = AppManager.sharedManager.currentUser.activeConversations
+        
+        shadowView.layer.shadowColor = UIColor.black.cgColor
+        shadowView.layer.shadowOpacity = 0.8
+        shadowView.layer.shadowRadius = 2
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: -2)
+        shadowView.layer.masksToBounds = false
+        
+        let nc = NotificationCenter.default // Note that default is now a property, not a method call
+        nc.addObserver(forName:Notification.Name(rawValue:"FriendListUpdated"),
+                       object:nil, queue:nil) {
+                        notification in
+                        
+                        print("ViewController Adding")
+                        let newArray = Array(AppManager.sharedManager.friendsNearMe)
+                        if self.availableFriends.count != newArray.count {
+                            self.availableFriends = newArray
+                            self.collectionView.reloadData()
+                            
+                            if self.availableFriends.count > 0 {
+                                self.showCollection()
+                                print("Show Collection")
+                            } else {
+                                print("Hide Collection")
+
+                                self.hideCollection()
+                            }
+                        }
+                        
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         AppManager.sharedManager.sparkService.login(loginViewController: self)
+    }
+    
+    func newFriendIn(array: Array<Friend>) -> Bool {
+        for friend in array {
+            if !self.availableFriends.contains(friend) {
+                print("True")
+
+                return true
+            }
+        }
+        print("False")
+
+        return false
     }
     
     func showCollection() {
@@ -87,7 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let lastMessage = conversation.messages.last {
             let dateFormatter = DateFormatter()
             
-            dateFormatter.dateFormat = "dd/MM/yyyy"
+            dateFormatter.dateFormat = "dd/MM/yy"
             let dateString = dateFormatter.string(from:lastMessage.date)
             cell.dateLabel.text = dateString
             
