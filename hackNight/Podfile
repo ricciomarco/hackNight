@@ -5,11 +5,11 @@ project 'hackNight.xcodeproj'
 
 target 'hackNight' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  pod 'SparkSDK'
+
   use_frameworks!
 
   pod 'JSQMessagesViewController'
-  pod 'SparkSDK'
-
   pod 'SDWebImage'
   # Pods for hackNight
 

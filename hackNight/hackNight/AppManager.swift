@@ -17,6 +17,8 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
 
     var currentUser: User
     let locationManager = CLLocationManager()
+    var friendsList = Array<Friend>()
+    let sparkService = SparkComunication()
     
     private override init() {
         
@@ -25,18 +27,17 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
         super.init()
         
         locationManager.delegate = self
-        // 2
         locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
         
-        
-        
-        
+        friendsList = sparkService.getFriends()
         
         if DEBUG_FLAG {
             let conversations = [Conversation(friend: Friend(ID: "12345",
                                                              name: "Il mio Bot",
-                                                             location: CLLocationCoordinate2D(latitude: 1.0,
-                                                                                              longitude: 1.0),
+                                                             location: CLLocation(latitude: 1.0,
+                                                                                  longitude: 1.0),
                                                              locationName: "Bosco di Capodimonte",
                                                              image: UIImage(named: "Placeholder"),
                                                              imageUrl: "urlACazzo"),
@@ -50,6 +51,15 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for friend in friendsList {
+
+        }
+    }
+    
+    func userIsCloseTo(location: CLLocation, maxDistance: Double) ->Bool {
+        return (locationManager.location?.distance(from: location))! < maxDistance
+    }
     
     
 }

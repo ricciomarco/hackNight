@@ -17,7 +17,7 @@ class SparkComunication: ComunicationInterface {
     var delegate: ComunicationDelegate?
     
     init() {
-        friends.insert(Friend(ID: "capemountainbot@sparkbot.io", name: "Bot di Capodimonte", location: CLLocationCoordinate2D(), image: nil, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"))
+        friends.insert(Friend(ID: "capemountainbot@sparkbot.io", name: "Bot di Capodimonte", location: CLLocation(), locationName: "Bosco Di Capodimonte", image: nil, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"))
     }
     
     func login(loginViewController viewController: UIViewController) {
@@ -25,7 +25,7 @@ class SparkComunication: ComunicationInterface {
         let clientSecret = "da128e03cf152ca4fa785451c37656b483c23b59141a16a8709ce8b2b883197f"
         let scope = "spark:all"
         let redirectUri = "Sparkdemoapp://response"
-        
+
         let authenticator = OAuthAuthenticator(clientId: clientId, clientSecret: clientSecret, scope: scope, redirectUri: redirectUri)
         spark = Spark(authenticator: authenticator)
         

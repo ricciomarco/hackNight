@@ -22,6 +22,9 @@
 		CA59B5D31F07D7F40024069F /* NearMeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5D21F07D7F40024069F /* NearMeCollectionViewCell.swift */; };
 		CA59B5D51F07E4040024069F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5D41F07E4040024069F /* Friend.swift */; };
 		CA59B5D71F07E56C0024069F /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5D61F07E56C0024069F /* Conversation.swift */; };
+		CA59B5DC1F0811360024069F /* ComunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5D91F0811360024069F /* ComunicationDelegate.swift */; };
+		CA59B5DD1F0811360024069F /* ComunicationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5DA1F0811360024069F /* ComunicationInterface.swift */; };
+		CA59B5DE1F0811360024069F /* SparkComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5DB1F0811360024069F /* SparkComunication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		CA59B5D21F07D7F40024069F /* NearMeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA59B5D41F07E4040024069F /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		CA59B5D61F07E56C0024069F /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		CA59B5D91F0811360024069F /* ComunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComunicationDelegate.swift; sourceTree = "<group>"; };
+		CA59B5DA1F0811360024069F /* ComunicationInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComunicationInterface.swift; sourceTree = "<group>"; };
+		CA59B5DB1F0811360024069F /* SparkComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkComunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 		A90B5DEF1F07985A00D444CD /* hackNight */ = {
 			isa = PBXGroup;
 			children = (
+				CA59B5D91F0811360024069F /* ComunicationDelegate.swift */,
+				CA59B5DA1F0811360024069F /* ComunicationInterface.swift */,
+				CA59B5DB1F0811360024069F /* SparkComunication.swift */,
 				CA59B5D81F07E6940024069F /* Models */,
 				CA59B5CA1F07D78E0024069F /* AppManager.swift */,
 				CA59B5CC1F07D78E0024069F /* ConversationViewController.swift */,
@@ -250,14 +259,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90B5DF31F07985A00D444CD /* ViewController.swift in Sources */,
+				CA59B5DC1F0811360024069F /* ComunicationDelegate.swift in Sources */,
 				A90B5DF11F07985A00D444CD /* AppDelegate.swift in Sources */,
 				CA59B5D11F07D78E0024069F /* User.swift in Sources */,
 				CA59B5D71F07E56C0024069F /* Conversation.swift in Sources */,
 				CA59B5D01F07D78E0024069F /* ConversationViewController.swift in Sources */,
 				CA59B5C51F07D1D70024069F /* ConversationTableViewCell.swift in Sources */,
 				CA59B5D31F07D7F40024069F /* NearMeCollectionViewCell.swift in Sources */,
+				CA59B5DE1F0811360024069F /* SparkComunication.swift in Sources */,
 				CA59B5CE1F07D78E0024069F /* AppManager.swift in Sources */,
 				CA59B5D51F07E4040024069F /* Friend.swift in Sources */,
+				CA59B5DD1F0811360024069F /* ComunicationInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51C5D5799B4CA35233A5392F /* Pods-hackNight.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CHQFTXKUY4;
 				INFOPLIST_FILE = hackNight/Info.plist;
@@ -398,7 +410,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 839315E3E97F7156CDFE0544 /* Pods-hackNight.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CHQFTXKUY4;
 				INFOPLIST_FILE = hackNight/Info.plist;
