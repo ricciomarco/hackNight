@@ -12,14 +12,17 @@ import JSQMessagesViewController
 
 let DEBUG_FLAG = true
 
-final class AppManager: CLLocationManagerDelegate {
+final class AppManager: NSObject, CLLocationManagerDelegate {
     static let sharedManager = AppManager()
 
     var currentUser: User
     let locationManager = CLLocationManager()
     
-    private init() {
+    private override init() {
         
+        self.currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "01")
+
+        super.init()
         
         locationManager.delegate = self
         // 2
@@ -27,7 +30,6 @@ final class AppManager: CLLocationManagerDelegate {
         
         
         
-        currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "01")
         
         
         if DEBUG_FLAG {
