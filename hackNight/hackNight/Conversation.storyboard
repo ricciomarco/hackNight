@@ -13,7 +13,7 @@
         <scene sceneID="9j0-lp-3ef">
             <objects>
                 <navigationController id="9o7-I1-2Pz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YQj-lq-xag">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YQj-lq-xag">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -40,7 +40,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vJx-2K-IY4">
-                        <barButtonItem key="rightBarButtonItem" image="Message" id="Xpx-cP-ab8"/>
+                        <barButtonItem key="rightBarButtonItem" image="support" id="Xpx-cP-ab8">
+                            <connections>
+                                <action selector="operatorCallPressed" destination="mTz-SM-BEu" id="CX7-kU-Dua"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -50,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Message" width="37" height="37"/>
+        <image name="support" width="32" height="32"/>
     </resources>
 </document>

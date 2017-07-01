@@ -8,6 +8,7 @@
 
 import UIKit
 import JSQMessagesViewController
+import SparkSDK
 
 class ConversationViewController: JSQMessagesViewController {
 
@@ -19,6 +20,39 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         assert((conversation != nil), "Conversation is nil")
+        
+        AppManager.sharedManager.sparkService.spark.phone.register() { error in
+            if let error = error {
+                print("Device Not Registered")
+                // Device not registered, and calls will not be sent or received
+            } else {
+                print("Device Registered")
+
+                // Device registered
+            }
+        }
+    }
+    
+    @IBAction func operatorCallPressed() {
+        print("BeginningCall")
+        let address = "coworker@example.com"
+        let mediaOption = MediaOption.audioOnly()
+        AppManager.sharedManager.sparkService.spark.phone.dial(address, option:mediaOption) { ret in
+            switch ret {
+            case .success(let call):
+                // success
+                call.onConnected = {
+                    print("Connected")
+                }
+                call.onDisconnected = { reason in
+                    print("Disconnected")
+                }
+            case .failure(let error):
+                print(error)
+                break
+                // failure
+            }
+        }
     }
     
     override func viewDidLoad() {

@@ -139,7 +139,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCc-xS-gVh">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCc-xS-gVh">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -203,7 +203,15 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="95c-Hx-1gj"/>
+                    <navigationItem key="navigationItem" id="95c-Hx-1gj">
+                        <barButtonItem key="rightBarButtonItem" image="map" id="sVz-WF-wgh">
+                            <connections>
+                                <segue destination="V3L-Lr-uNh" kind="popoverPresentation" popoverAnchorBarButtonItem="sVz-WF-wgh" id="eKj-2u-r2W">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="eep-y4-yYI" id="5qM-6r-2UT"/>
                         <outlet property="hideCollectionConstraint" destination="M29-Lf-m6p" id="ge3-eq-xDg"/>
@@ -216,6 +224,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="792.79999999999995" y="-546.47676161919048"/>
+        </scene>
+        <!--map-->
+        <scene sceneID="qCn-1p-4sR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="map" id="V3L-Lr-uNh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LWV-Gp-xf3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1481" y="-812"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WVF-CM-egM">
@@ -236,4 +252,7 @@
             <point key="canvasLocation" x="-58.399999999999999" y="-545.57721139430294"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="37" height="37"/>
+    </resources>
 </document>

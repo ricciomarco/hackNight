@@ -20,6 +20,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var friendsList = Array<Friend>()
     var friendsNearMe = Set<Friend>()
+    var openConversationByBotID = ""
     
     private override init() {
         
@@ -53,9 +54,36 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func conversationByBot(ID: String) -> Conversation? {
+        for conversation in self.currentUser.activeConversations {
+            if conversation.friend.ID == ID {
+                return conversation
+            }
+        }
+        return nil
+    }
+    
+    func friend(named: String) -> Friend? {
+        for friend in friendsList {
+            if friend.name == named {
+                return friend
+            }
+        }
+        return nil
+    }
+    
+    func friend(ID: String) -> Friend? {
+        for friend in friendsList {
+            if friend.ID == ID {
+                return friend
+            }
+        }
+        return nil
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for friend in friendsList {
-            if userIsCloseTo(location: friend.location, maxDistance: 100) {
+            if userIsCloseTo(location: friend.location, maxDistance: 1000) {
                 print("Adding")
 
                 friendsNearMe.insert(friend)

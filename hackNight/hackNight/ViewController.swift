@@ -8,7 +8,7 @@
 
 import UIKit
 import SparkSDK
-
+import JSQMessagesViewController
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -24,6 +24,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var availableFriends = Array<Friend>()
     var conversationsArray = Array<Conversation>()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let newConvID = AppManager.sharedManager.openConversationByBotID
+        
+        if newConvID.characters.count > 0 {
+            
+            openConversationBy(ID: newConvID)
+            AppManager.sharedManager.openConversationByBotID = ""
+        }
+    }
+    
+    func openConversationBy(ID:String) {
+        let conversationController = UIStoryboard.init(name: "Conversation", bundle: Bundle.main).instantiateInitialViewController() as! ConversationViewController
+        
+        if let conversation = AppManager.sharedManager.conversationByBot(ID: ID) {
+            conversationController.conversation = conversation
+        } else {
+            if let friend = AppManager.sharedManager.friend(ID: ID) {
+                conversationController.conversation = Conversation(friend: friend,
+                                                                   messages: Array<JSQMessage>())
+            }
+            
+        }
+        
+        
+        self.navigationController?.pushViewController(conversationController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,34 +207,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: UICollectionViewDelegate
     
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        openConversationBy(ID: availableFriends[indexPath.row].ID)
+    }
     
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
     
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
 }
 
 //extension MessageClient {
