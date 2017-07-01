@@ -12,6 +12,7 @@
 		A90B5DF61F07985A00D444CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90B5DF41F07985A00D444CD /* Main.storyboard */; };
 		A90B5DF81F07985A00D444CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90B5DF71F07985A00D444CD /* Assets.xcassets */; };
 		A90B5DFB1F07985A00D444CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90B5DF91F07985A00D444CD /* LaunchScreen.storyboard */; };
+		A90B5E031F07BB6500D444CD /* SanFrancisco.otf in Resources */ = {isa = PBXBuildFile; fileRef = A90B5E021F07BB6500D444CD /* SanFrancisco.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A90B5DF71F07985A00D444CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A90B5DFA1F07985A00D444CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90B5DFC1F07985A00D444CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90B5E021F07BB6500D444CD /* SanFrancisco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SanFrancisco.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				A90B5DF71F07985A00D444CD /* Assets.xcassets */,
 				A90B5DF91F07985A00D444CD /* LaunchScreen.storyboard */,
 				A90B5DFC1F07985A00D444CD /* Info.plist */,
+				A90B5E021F07BB6500D444CD /* SanFrancisco.otf */,
 			);
 			path = hackNight;
 			sourceTree = "<group>";
@@ -96,6 +99,7 @@
 				TargetAttributes = {
 					A90B5DEC1F07985A00D444CD = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = CHQFTXKUY4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90B5DFB1F07985A00D444CD /* LaunchScreen.storyboard in Resources */,
+				A90B5E031F07BB6500D444CD /* SanFrancisco.otf in Resources */,
 				A90B5DF81F07985A00D444CD /* Assets.xcassets in Resources */,
 				A90B5DF61F07985A00D444CD /* Main.storyboard in Resources */,
 			);
@@ -262,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CHQFTXKUY4;
 				INFOPLIST_FILE = hackNight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.riccio.hackNight;
@@ -274,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CHQFTXKUY4;
 				INFOPLIST_FILE = hackNight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.riccio.hackNight;
