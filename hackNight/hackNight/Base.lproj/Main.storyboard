@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,7 +62,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Last Message" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ior-wH-VRZ">
-                                                    <rect key="frame" x="116" y="53.5" width="106" height="38.5"/>
+                                                    <rect key="frame" x="116" y="53.5" width="226" height="38.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -84,6 +85,7 @@
                                                 <constraint firstItem="l6I-Wf-eEX" firstAttribute="top" secondItem="XpM-0F-CxA" secondAttribute="bottom" constant="2" id="cuN-nv-q5k"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="iLF-rT-w0q" secondAttribute="bottom" constant="1.5" id="gBM-52-1FX"/>
                                                 <constraint firstItem="iLF-rT-w0q" firstAttribute="leading" secondItem="v5U-Yb-6GP" secondAttribute="leadingMargin" constant="13" id="rG1-Bo-lLU"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ior-wH-VRZ" secondAttribute="trailing" id="vmO-sD-GcU"/>
                                                 <constraint firstItem="Ior-wH-VRZ" firstAttribute="top" secondItem="l6I-Wf-eEX" secondAttribute="bottom" constant="6" id="xBe-AC-Pkh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -101,18 +103,21 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="6aK-Na-ym6"/>
                                 </connections>
                             </tableView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z03-Jg-Pi4">
-                                <rect key="frame" x="0.0" y="558" width="375" height="109"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z03-Jg-Pi4">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CT1-Gs-3UM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vicino a Te" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35N-po-oWR">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="19"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eep-y4-yYI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                            <rect key="frame" x="0.0" y="19" width="375" height="75"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="94" id="HPV-qK-rIZ"/>
-                                            </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ats-a8-YMq">
                                                 <size key="itemSize" width="70" height="70"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -121,7 +126,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reuseIdentifier" id="LkC-2G-U9Z" customClass="NearMeCollectionViewCell" customModule="hackNight" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="12" width="70" height="70"/>
+                                                    <rect key="frame" x="10" y="2.5" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -157,11 +162,18 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eep-y4-yYI" firstAttribute="width" secondItem="CT1-Gs-3UM" secondAttribute="width" id="85h-m8-8jg"/>
+                                        <constraint firstItem="eep-y4-yYI" firstAttribute="top" secondItem="35N-po-oWR" secondAttribute="bottom" id="J11-yM-Qqn"/>
+                                        <constraint firstItem="35N-po-oWR" firstAttribute="leading" secondItem="CT1-Gs-3UM" secondAttribute="leading" constant="8" id="V8D-SA-Sqw"/>
                                         <constraint firstItem="eep-y4-yYI" firstAttribute="centerX" secondItem="CT1-Gs-3UM" secondAttribute="centerX" id="Vy3-VP-uSs"/>
-                                        <constraint firstItem="eep-y4-yYI" firstAttribute="centerY" secondItem="CT1-Gs-3UM" secondAttribute="centerY" id="ls1-4f-nQW"/>
-                                        <constraint firstItem="eep-y4-yYI" firstAttribute="height" secondItem="CT1-Gs-3UM" secondAttribute="height" id="rac-to-LXg"/>
+                                        <constraint firstItem="35N-po-oWR" firstAttribute="top" secondItem="CT1-Gs-3UM" secondAttribute="top" id="kV1-Un-M7q"/>
+                                        <constraint firstItem="eep-y4-yYI" firstAttribute="height" secondItem="CT1-Gs-3UM" secondAttribute="height" multiplier="0.8" id="rac-to-LXg"/>
+                                        <constraint firstAttribute="trailing" secondItem="35N-po-oWR" secondAttribute="trailing" constant="8" id="wex-pD-fQk"/>
+                                        <constraint firstAttribute="bottom" secondItem="eep-y4-yYI" secondAttribute="bottom" id="xMa-rT-li9"/>
                                     </constraints>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="94" id="oki-P2-RSG"/>
+                                </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                         </subviews>
@@ -199,7 +211,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ux9-Hv-V9j" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rj2-7u-ICT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rj2-7u-ICT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
