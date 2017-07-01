@@ -43,9 +43,9 @@ class SparkComunication: ComunicationInterface {
     }
     
     func sendMessage(to friend: Friend, text message: String, completion: @escaping((_ success: Bool) -> Void)) {
-        spark.messages.post(personEmail: EmailAddress.fromString(friend.ID)!, text: message) {
-            messageResponse in
+        spark.messages.post(personEmail: EmailAddress.fromString(friend.ID)!, text: message, completionHandler: {
+            responseMessage in
             completion(true)
-        }
+        })
     }
 }

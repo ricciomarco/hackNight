@@ -34,7 +34,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
         friendsList = sparkService.getFriends()
         
         if DEBUG_FLAG {
-            let conversations = [Conversation(friend: Friend(ID: "12345",
+            let conversations = [Conversation(friend: Friend(ID: "capemountainbot@sparkbot.io",
                                                              name: "Il mio Bot",
                                                              location: CLLocation(latitude: 1.0,
                                                                                   longitude: 1.0),

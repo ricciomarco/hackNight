@@ -29,6 +29,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        AppManager.sharedManager.sparkService.login(loginViewController: self)
+    }
+    
     func showCollection() {
         self.view.removeConstraint(hideCollectionConstraint)
         self.view.addConstraint(showCollectionConstraint)
@@ -164,28 +168,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      }
      */
 }
-
-//extension MessageClient {
-//    public func post(roomId: String, markdown: String, files: String? = nil, queue: DispatchQueue? = nil, completionHandler: @escaping (ServiceResponse<Message>) -> Void) {
-//        post(roomId: roomId, personId: nil, personEmail: nil, markdown: markdown, files: files, queue: queue, completionHandler: completionHandler)
-//    }
-//    
-//    public func post(roomId: String?, personId: String?, personEmail: EmailAddress?, markdown: String?, files: String?, queue: DispatchQueue?, completionHandler: @escaping (ServiceResponse<Message>) -> Void) {
-//        let email: String? = personEmail == nil ? nil : personEmail!.toString()
-//        let body = RequestParameter([
-//            "roomId": roomId,
-//            "toPersonId": personId,
-//            "toPersonEmail": email,
-//            "markdown": markdown,
-//            "files": files])
-//        
-//        let request = requestBuilder()
-//            .method(.post)
-//            .body(body)
-//            .queue(queue)
-//            .build()
-//        
-//        request.responseObject(completionHandler)
-//    }
-//}
 

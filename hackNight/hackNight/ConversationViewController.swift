@@ -8,6 +8,7 @@
 
 import UIKit
 import JSQMessagesViewController
+import SparkSDK
 
 class ConversationViewController: JSQMessagesViewController {
 
@@ -23,7 +24,6 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = conversation?.friend.name
 
         self.senderId = AppManager.sharedManager.currentUser.ID
@@ -72,9 +72,9 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        AppManager.sharedManager.sparkService.sendMessage(to: conversation!.friend, text: "hello") {
+        AppManager.sharedManager.sparkService.sendMessage(to: conversation!.friend, text: text) {
             success in
-            print("Message sent with success")
+            print("Message: \(text) sent with success")
         }
     }
     
