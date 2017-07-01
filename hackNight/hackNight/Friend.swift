@@ -14,15 +14,18 @@ class Friend: NSObject {
     var name: String
     
     var location: CLLocationCoordinate2D
+    var locationName: String
+    
     var image: UIImage?
     var imageUrl: String
     
-    init(ID: String, name: String, location: CLLocationCoordinate2D, image: UIImage?, imageUrl: String) {
+    init(ID: String, name: String, location: CLLocationCoordinate2D, locationName: String, image: UIImage?, imageUrl: String) {
         self.ID = ID
         self.name = name
         self.location = location
         self.image = image
         self.imageUrl = imageUrl
+        self.locationName = locationName
     }
     
     

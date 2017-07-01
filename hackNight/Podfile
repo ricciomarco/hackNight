@@ -10,6 +10,7 @@ target 'hackNight' do
   pod 'JSQMessagesViewController'
   pod 'SparkSDK'
 
+  pod 'SDWebImage'
   # Pods for hackNight
 
 end

@@ -20,12 +20,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var showCollectionConstraint: NSLayoutConstraint!
     
     var availableFriends = Array<Friend>()
-    
+    var conversationsArray = Array<Conversation>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
+        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -65,19 +65,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return AppManager.sharedManager.currentUser.activeConversations.count
+        return conversationsArray.count
     }
     
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ConversationTableViewCell
      
+        let conversation = conversationsArray[indexPath.row]
+        let friend = conversation.friend
         
-        cell.nameLabel.text = "slkdasldh a"
-        cell.dateLabel.text = "12:01"
-        cell.lastMessageLabel.text = "L'ultimo messaggio più bellissimo del mondo intero molto lungo che nessuno leggeraà mai"
-        cell.locationLabel.text = "A casa mia"
-        cell.profileImageView.image = UIImage(named: "Placeholder")
+        cell.locationLabel.text = friend.locationName
+        cell.nameLabel.text = friend.name
+        
+        cell.profileImageView.image = friend.image
+
+        if let lastMessage = conversation.messages.last {
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateString = dateFormatter.string(from:lastMessage.date)
+            cell.dateLabel.text = dateString
+            
+            cell.lastMessageLabel.text = lastMessage.text
+            
+        }
         
      // Configure the cell...
      
@@ -85,40 +97,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      }
     
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let conversationController = UIStoryboard.init(name: "Conversation", bundle: Bundle.main).instantiateInitialViewController() as! ConversationViewController
+        
+        conversationController.conversation = conversationsArray[indexPath.row]
+        
+        self.navigationController?.pushViewController(conversationController, animated: true)
+        
+    }
     
     // MARK: UICollectionViewDataSource
     

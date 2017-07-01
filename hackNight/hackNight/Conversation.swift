@@ -10,11 +10,11 @@ import Foundation
 import JSQMessagesViewController
 
 class Conversation {
-    var friendID: String
+    var friend: Friend
     var messages = Array<JSQMessage>()
     
-    init(friendID: String, messages: [JSQMessage]) {
-        self.friendID = friendID
+    init(friend: Friend, messages: [JSQMessage]) {
+        self.friend = friend
         self.messages = messages
     }
 }
