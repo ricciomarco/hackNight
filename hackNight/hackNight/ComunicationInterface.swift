@@ -13,5 +13,7 @@ protocol ComunicationInterface {
     var delegate: ComunicationDelegate? { get set }
     
     func getFriends() -> [Friend]
-    func sendMessage(to: Friend, completion: @escaping((_ success: Bool) -> Void))
+    
+    // WARNING: Completion is always called with success = true
+    func sendMessage(to friend: Friend, text message: String, completion: @escaping((_ success: Bool) -> Void))
 }

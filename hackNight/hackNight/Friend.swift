@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class Friend {
+class Friend: NSObject {
     var ID: String
     var name: String
     
