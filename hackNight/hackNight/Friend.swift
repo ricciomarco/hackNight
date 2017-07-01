@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class Friend {
+class Friend: NSObject {
     var ID: String
     var name: String
     
@@ -17,7 +17,7 @@ class Friend {
     var image: UIImage?
     var imageUrl: String
     
-    init(ID: String, name: String, location: CLLocationCoordinate2D, image: UIImage, imageUrl: String) {
+    init(ID: String, name: String, location: CLLocationCoordinate2D, image: UIImage?, imageUrl: String) {
         self.ID = ID
         self.name = name
         self.location = location
