@@ -103,8 +103,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="6aK-Na-ym6"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-51-C9B">
+                                <rect key="frame" x="0.0" y="675" width="375" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="41P-Gu-9x8"/>
+                                </constraints>
+                            </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z03-Jg-Pi4">
-                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="673" width="375" height="94"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CT1-Gs-3UM">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,17 +187,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Z03-Jg-Pi4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="92c-K1-wJP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z03-Jg-Pi4" secondAttribute="bottom" constant="-94" id="M29-Lf-m6p"/>
+                            <constraint firstItem="Z03-Jg-Pi4" firstAttribute="top" secondItem="oE2-51-C9B" secondAttribute="bottom" constant="-3" id="HQq-km-x7Q"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z03-Jg-Pi4" secondAttribute="bottom" constant="-100" id="M29-Lf-m6p"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z03-Jg-Pi4" secondAttribute="bottom" id="NDW-SS-IyG">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
+                            <constraint firstItem="oE2-51-C9B" firstAttribute="width" secondItem="Z03-Jg-Pi4" secondAttribute="width" id="VJd-jf-cb4"/>
                             <constraint firstAttribute="trailing" secondItem="Z03-Jg-Pi4" secondAttribute="trailing" id="zXi-hj-yXB"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="M29-Lf-m6p"/>
+                                <exclude reference="NDW-SS-IyG"/>
                             </mask>
                         </variation>
                     </view>
@@ -198,8 +207,10 @@
                     <connections>
                         <outlet property="collectionView" destination="eep-y4-yYI" id="5qM-6r-2UT"/>
                         <outlet property="hideCollectionConstraint" destination="M29-Lf-m6p" id="ge3-eq-xDg"/>
+                        <outlet property="shadowView" destination="oE2-51-C9B" id="4aO-YC-iqk"/>
                         <outlet property="showCollectionConstraint" destination="NDW-SS-IyG" id="HGe-IH-6Hn"/>
                         <outlet property="tabelView" destination="wYr-74-N9j" id="x3I-V8-LiG"/>
+                        <outlet property="visualEffectView" destination="Z03-Jg-Pi4" id="t8T-EQ-PdZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -211,7 +222,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ux9-Hv-V9j" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rj2-7u-ICT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rj2-7u-ICT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

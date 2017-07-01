@@ -17,7 +17,7 @@ class SparkComunication: ComunicationInterface {
     var delegate: ComunicationDelegate?
     
     init() {
-        friends.insert(Friend(ID: "capemountainbot@sparkbot.io", name: "Bot di Capodimonte", location: CLLocation(), locationName: "Capodimonte", image: nil, imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"))
+        friends.insert(Friend(ID: "capemountainbot@sparkbot.io", name: "Bot di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"))
     }
     
     func login(loginViewController viewController: UIViewController) {

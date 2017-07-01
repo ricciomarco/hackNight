@@ -25,7 +25,7 @@ class ConversationViewController: JSQMessagesViewController {
         super.viewDidLoad()
         
         self.title = conversation?.friend.name
-
+        
         self.senderId = AppManager.sharedManager.currentUser.ID
         self.senderDisplayName = AppManager.sharedManager.currentUser.name
         
