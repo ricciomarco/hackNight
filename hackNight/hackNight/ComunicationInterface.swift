@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SparkSDK
 
 protocol ComunicationInterface {
     
@@ -15,5 +16,5 @@ protocol ComunicationInterface {
     func getFriends() -> [Friend]
     
     // WARNING: Completion is always called with success = true
-    func sendMessage(to friend: Friend, text message: String, completion: @escaping((_ success: Bool) -> Void))
+    func sendMessage(to friend: Friend, text message: String, completion: @escaping((_ message: Message) -> Void))
 }

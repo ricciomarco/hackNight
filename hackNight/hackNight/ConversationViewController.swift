@@ -73,8 +73,8 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         AppManager.sharedManager.sparkService.sendMessage(to: conversation!.friend, text: text) {
-            success in
-            print("Message: \(text) sent with success")
+            message in
+//            print(message)
         }
     }
     

@@ -23,12 +23,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var showCollectionConstraint: NSLayoutConstraint!
     
     var availableFriends = Array<Friend>()
-    var conversationsArray = Array<Conversation>()
+    var conversationsArray: Array<Conversation> {
+        return AppManager.sharedManager.currentUser.activeConversations
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
-        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
+//        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
         
         shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowOpacity = 0.8
@@ -40,8 +42,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         nc.addObserver(forName:Notification.Name(rawValue:"FriendListUpdated"),
                        object:nil, queue:nil) {
                         notification in
-                        
-                        print("ViewController Adding")
                         let newArray = Array(AppManager.sharedManager.friendsNearMe)
                         if self.availableFriends.count != newArray.count {
                             self.availableFriends = newArray
@@ -62,7 +62,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppManager.sharedManager.sparkService.login(loginViewController: self)
+        AppManager.sharedManager.sparkService.login(loginViewController: self) {
+            DispatchQueue.main.async {
+                self.tabelView.reloadData()
+            }
+        }
     }
     
     func newFriendIn(array: Array<Friend>) -> Bool {
