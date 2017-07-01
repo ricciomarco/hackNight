@@ -23,7 +23,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var showCollectionConstraint: NSLayoutConstraint!
     
     var availableFriends = Array<Friend>()
-    var conversationsArray = Array<Conversation>()
+    var conversationsArray: Array<Conversation> {
+        return AppManager.sharedManager.currentUser.activeConversations
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         let newConvID = AppManager.sharedManager.openConversationByBotID
@@ -55,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
-        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
+//        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
         
         shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowOpacity = 0.8
@@ -67,8 +69,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         nc.addObserver(forName:Notification.Name(rawValue:"FriendListUpdated"),
                        object:nil, queue:nil) {
                         notification in
-                        
-                        print("ViewController Adding")
                         let newArray = Array(AppManager.sharedManager.friendsNearMe)
                         if self.availableFriends.count != newArray.count {
                             self.availableFriends = newArray
@@ -86,6 +86,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
         }
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        AppManager.sharedManager.sparkService.login(loginViewController: self) {
+            DispatchQueue.main.async {
+                self.tabelView.reloadData()
+            }
+        }
     }
     
     func newFriendIn(array: Array<Friend>) -> Bool {
@@ -213,28 +221,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 }
-
-//extension MessageClient {
-//    public func post(roomId: String, markdown: String, files: String? = nil, queue: DispatchQueue? = nil, completionHandler: @escaping (ServiceResponse<Message>) -> Void) {
-//        post(roomId: roomId, personId: nil, personEmail: nil, markdown: markdown, files: files, queue: queue, completionHandler: completionHandler)
-//    }
-//    
-//    public func post(roomId: String?, personId: String?, personEmail: EmailAddress?, markdown: String?, files: String?, queue: DispatchQueue?, completionHandler: @escaping (ServiceResponse<Message>) -> Void) {
-//        let email: String? = personEmail == nil ? nil : personEmail!.toString()
-//        let body = RequestParameter([
-//            "roomId": roomId,
-//            "toPersonId": personId,
-//            "toPersonEmail": email,
-//            "markdown": markdown,
-//            "files": files])
-//        
-//        let request = requestBuilder()
-//            .method(.post)
-//            .body(body)
-//            .queue(queue)
-//            .build()
-//        
-//        request.responseObject(completionHandler)
-//    }
-//}
 

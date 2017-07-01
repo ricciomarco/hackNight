@@ -8,11 +8,12 @@
 
 import CoreLocation
 import UIKit
+import SparkSDK
 import JSQMessagesViewController
 
-let DEBUG_FLAG = true
+//let DEBUG_FLAG = true
 
-final class AppManager: NSObject, CLLocationManagerDelegate {
+final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegate {
     static let sharedManager = AppManager()
 
     var currentUser: User
@@ -24,7 +25,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     
     private override init() {
         
-        self.currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "01")
+        self.currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "rjproj@gmail.com")
 
         super.init()
         
@@ -34,24 +35,25 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         friendsList = sparkService.getFriends()
+        sparkService.delegate = self
         
 
-        if DEBUG_FLAG {
-            let conversations = [Conversation(friend: Friend(ID: "12345",
-                                                             name: "Il mio Bot",
-                                                             location: CLLocation(latitude: 1.0,
-                                                                                  longitude: 1.0),
-                                                             locationName: "Bosco di Capodimonte",
-                                                             image: UIImage(named: "Placeholder"),
-                                                             imageUrl: "urlACazzo"),
-                                 messages: [JSQMessage(senderId: self.currentUser.ID,
-                                                       displayName: self.currentUser.name,
-                                                       text: "aòlsjda kls dalsjd alksd as"),
-                                            JSQMessage(senderId: "12345",
-                                                       displayName: "Altro", 
-                                                       text: "alsdalnskads lkasndadlkn asldkn dknsl !!!")])]
-            currentUser.activeConversations = conversations
-        }
+//        if DEBUG_FLAG {
+//            let conversations = [Conversation(friend: Friend(ID: "capemountainbot@sparkbot.io",
+//                                                             name: "Il mio Bot",
+//                                                             location: CLLocation(latitude: 1.0,
+//                                                                                  longitude: 1.0),
+//                                                             locationName: "Bosco di Capodimonte",
+//                                                             image: UIImage(named: "Placeholder"),
+//                                                             imageUrl: "urlACazzo"),
+//                                 messages: [JSQMessage(senderId: self.currentUser.ID,
+//                                                       displayName: self.currentUser.name,
+//                                                       text: "aòlsjda kls dalsjd alksd as"),
+//                                            JSQMessage(senderId: "12345",
+//                                                       displayName: "Altro", 
+//                                                       text: "alsdalnskads lkasndadlkn asldkn dknsl !!!")])]
+//            currentUser.activeConversations = conversations
+//        }
     }
     
     func conversationByBot(ID: String) -> Conversation? {
@@ -83,8 +85,8 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for friend in friendsList {
-            if userIsCloseTo(location: friend.location, maxDistance: 1000) {
-                print("Adding")
+
+            if userIsCloseTo(location: friend.location, maxDistance: 100) {
 
                 friendsNearMe.insert(friend)
                 
@@ -93,7 +95,6 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
                         object: nil,
                         userInfo: nil )
             } else {
-                print("Removing")
                 friendsNearMe.remove(friend)
                 
                 let nc = NotificationCenter.default
@@ -105,12 +106,12 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     }
     
     func userIsCloseTo(location: CLLocation, maxDistance: Double) ->Bool {
-        print("User Location = \(locationManager.location!)")
-        print("Friend Location = \(location)")
         let distance = (locationManager.location?.distance(from: location))!
         print(distance)
         return distance < maxDistance
     }
     
-    
+    func onNewMessageUpdate(from friend: Friend, message: Message) {
+        print("[\(friend.ID)] \(message.text!)")
+    }
 }

@@ -27,6 +27,4 @@ class Friend: NSObject {
         self.imageUrl = imageUrl
         self.locationName = locationName
     }
-    
-    
 }

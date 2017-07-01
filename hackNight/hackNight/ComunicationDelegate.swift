@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import SparkSDK
 
 protocol ComunicationDelegate {
-    func onNewMessageArrival(from friend: Friend)
+    func onNewMessageUpdate(from friend: Friend, message: Message)
 }
