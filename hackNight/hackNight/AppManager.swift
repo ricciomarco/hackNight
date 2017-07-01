@@ -12,12 +12,21 @@ import JSQMessagesViewController
 
 let DEBUG_FLAG = true
 
-final class AppManager {
+final class AppManager: CLLocationManagerDelegate {
     static let sharedManager = AppManager()
 
     var currentUser: User
+    let locationManager = CLLocationManager()
     
     private init() {
+        
+        
+        locationManager.delegate = self
+        // 2
+        locationManager.requestAlwaysAuthorization()
+        
+        
+        
         currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "01")
         
         
@@ -38,5 +47,7 @@ final class AppManager {
             currentUser.activeConversations = conversations
         }
     }
+    
+    
     
 }

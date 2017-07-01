@@ -8,6 +8,8 @@ target 'hackNight' do
   use_frameworks!
 
   pod 'JSQMessagesViewController'
+  pod 'SparkSDK'
+
   pod 'SDWebImage'
   # Pods for hackNight
 
