@@ -211,7 +211,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ux9-Hv-V9j" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rj2-7u-ICT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rj2-7u-ICT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

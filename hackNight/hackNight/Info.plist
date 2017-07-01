@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Ti stalkero</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SanFrancisco.otf</string>
@@ -27,8 +29,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>map</string>
-	dc407b8af73d2e268e89ea26071765d6c7009a1b
+	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
