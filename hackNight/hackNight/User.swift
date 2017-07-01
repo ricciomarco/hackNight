@@ -13,6 +13,8 @@ class User {
     var name: String
     var ID: String
     
+    var myFriends = Array<String>()
+    
     init(image: UIImage?, name: String, ID: String) {
         self.image = image
         self.name = name

@@ -29,7 +29,7 @@ class ConversationViewController: JSQMessagesViewController {
         messages.append(message!)
         messages.append(message2!)
 
-        incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).outgoingMessagesBubbleImage(with: UIColor.red)
+        incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).incomingMessagesBubbleImage(with: UIColor.blue)
         outgoingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).outgoingMessagesBubbleImage(with: UIColor.red)
         
         // Do any additional setup after loading the view.
@@ -55,7 +55,9 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
-        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: AppManager.sharedManager.currentUser.getInitials(),
+        
+        let initials = messages[indexPath.item].senderId == self.senderId ? "XX" : AppManager.sharedManager.currentUser.getInitials()
+        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials,
                                                          backgroundColor: UIColor.blue,
                                                          textColor: UIColor.white,
                                                          font: UIFont(name: "Arial", size: 17),
