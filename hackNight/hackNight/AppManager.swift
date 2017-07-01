@@ -16,6 +16,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate {
     static let sharedManager = AppManager()
 
     var currentUser: User
+    var sparkService = SparkComunication()
     let locationManager = CLLocationManager()
     var friendsList = Array<Friend>()
     let sparkService = SparkComunication()
