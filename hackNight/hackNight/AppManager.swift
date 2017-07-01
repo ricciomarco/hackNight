@@ -12,6 +12,7 @@ final class AppManager {
     static let sharedManager = AppManager()
 
     var currentUser: User
+    var sparkService = SparkComunication()
     
     private init() {
         currentUser = User(image: nil, name: "Claudio Santonastaso", ID: "01")
