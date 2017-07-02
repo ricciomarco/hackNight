@@ -27,6 +27,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return AppManager.sharedManager.currentUser.activeConversations
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabelView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         
