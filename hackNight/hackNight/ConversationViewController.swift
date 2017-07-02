@@ -33,8 +33,9 @@ class ConversationViewController: JSQMessagesViewController {
             }
         }
         
-        
     }
+    
+
     
     @IBAction func operatorCallPressed() {
         print("BeginningCall")
@@ -122,6 +123,10 @@ class ConversationViewController: JSQMessagesViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.scrollToBottom(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = conversation?.friend.name
@@ -141,11 +146,14 @@ class ConversationViewController: JSQMessagesViewController {
             if let isUserSending = notification.userInfo?["isUserSending"] {
                 self.conversation?.messages.append(JSQMessage(senderId: AppManager.sharedManager.currentUser.ID, displayName: AppManager.sharedManager.currentUser.name, text: notification.userInfo!["text"] as! String))
                 self.collectionView.reloadData()
+                self.scrollToBottom(animated: true)
             } else {
                 if (self.conversation?.messages.last)!.text != notification.userInfo?["text"] as! String {
                     if self.conversation!.friend == notification.object as! Friend {
                         self.conversation?.messages.append(JSQMessage(senderId: (self.conversation?.friend.ID)!, displayName: (self.conversation?.friend.name)!, text: notification.userInfo!["text"] as! String))
                         self.collectionView.reloadData()
+                        self.scrollToBottom(animated: true)
+
                     }
                 }
             }
