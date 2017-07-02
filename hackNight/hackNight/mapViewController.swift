@@ -43,6 +43,7 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         for friend in AppManager.sharedManager.friendsList {
             
+            print("_____ANNOTATION")
             let annotationToAdd = MKPointAnnotation()
             
             annotationToAdd.title = friend.name
@@ -50,9 +51,10 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationToAdd.coordinate = friend.location.coordinate
             
             arrayAnnotations.append(annotationToAdd)
+            self.customMap.addAnnotation(annotationToAdd)
         }
         
-        self.customMap.showAnnotations(arrayAnnotations, animated: true)
+        //self.customMap.showAnnotations(arrayAnnotations, animated: true)
 
         
     }

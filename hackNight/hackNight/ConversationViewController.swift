@@ -32,6 +32,8 @@ class ConversationViewController: JSQMessagesViewController {
                 // Device registered
             }
         }
+        
+        
     }
     
     @IBAction func operatorCallPressed() {
@@ -49,31 +51,33 @@ class ConversationViewController: JSQMessagesViewController {
                     call.onConnected = {
                         print("___Connected")
                         HUD.flash(.success, delay: 1.0)
-                        
-                        let title = call.to?.email ?? ""
-                        let message = "Chiamata in corso"
-                        let image = UIImage(named: "support")
-                        
-                        // Create the dialog
-                        let popup = PopupDialog(title: title, message: message, image: image)
-                        
-                        // Create buttons
-                        let buttonOne = CancelButton(title: "Riaggancia") {
-                            print("You canceled the car dialog.")
-                            if call.status == CallStatus.connected {
-                                call.hangup(completionHandler: { (error) in
-                                    popup.dismiss()
-                                })
+                        HUD.flash(.success, onView: self.view, delay: 0.0, completion: { (bool) in
+                            let title = call.to?.email ?? ""
+                            let message = "Chiamata in corso"
+                            let image = self.conversation?.friend.image
+                            
+                            // Create the dialog
+                            let popup = PopupDialog(title: title, message: message, image: image, buttonAlignment: UILayoutConstraintAxis.vertical, transitionStyle: PopupDialogTransitionStyle.bounceUp, gestureDismissal: false, completion: nil)
+                            
+                            // Create buttons
+                            let buttonOne = CancelButton(title: "Riaggancia") {
+                                print("You canceled the car dialog.")
+                                if call.status == CallStatus.connected {
+                                    call.hangup(completionHandler: { (error) in
+                                        popup.dismiss()
+                                    })
+                                }
                             }
-                        }
+                            
+                            // Add buttons to dialog
+                            // Alternatively, you can use popup.addButton(buttonOne)
+                            // to add a single button
+                            popup.addButtons([buttonOne])
+                            
+                            // Present dialog
+                            self.present(popup, animated: true, completion: nil)
+                        })
                         
-                        // Add buttons to dialog
-                        // Alternatively, you can use popup.addButton(buttonOne)
-                        // to add a single button
-                        popup.addButtons([buttonOne])
-                        
-                        // Present dialog
-                        self.present(popup, animated: true, completion: nil)
                     }
                     call.onDisconnected = { reason in
                         print("___Disconnected")
