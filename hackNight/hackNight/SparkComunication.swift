@@ -20,6 +20,12 @@ class SparkComunication: ComunicationInterface {
     
     var delegate: ComunicationDelegate?
     
+    init() {
+        for (name, friend) in BotData.friendByName {
+            friends[name] = friend
+        }
+    }
+    
     func login(loginViewController viewController: UIViewController, completion: @escaping(()-> (Void))) {
         let clientId = "C20ec6ebc30814a0db0fe228c26b8ec38ab8bd9ac7678ef3106023a9d6fbfbb9c"
         let clientSecret = "da128e03cf152ca4fa785451c37656b483c23b59141a16a8709ce8b2b883197f"
@@ -126,6 +132,7 @@ class SparkComunication: ComunicationInterface {
 
 struct BotData {
     public static let friendByName = [
-        "CapeMountainBot": Friend(ID: "capemountainbot@sparkbot.io", name: "Museo di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
+        "CapeMountainBot": Friend(ID: "capemountainbot@sparkbot.io", name: "Museo di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"),
+        "StatuaDelGigante": Friend(ID: "statuadelgigante@sparkbot.io", name: "Statua del Gigante", location: CLLocation(latitude: 37.33155713, longitude: -122.0307108), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
     ]
 }

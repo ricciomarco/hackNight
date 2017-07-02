@@ -138,9 +138,11 @@ class ConversationViewController: JSQMessagesViewController {
                 self.conversation?.messages.append(JSQMessage(senderId: AppManager.sharedManager.currentUser.ID, displayName: AppManager.sharedManager.currentUser.name, text: notification.userInfo!["text"] as! String))
                 self.collectionView.reloadData()
             } else {
-                if (self.conversation?.messages.last)!.text != notification.userInfo!["text"] as! String {
-                    self.conversation?.messages.append(JSQMessage(senderId: (self.conversation?.friend.ID)!, displayName: (self.conversation?.friend.name)!, text: notification.userInfo!["text"] as! String))
-                    self.collectionView.reloadData()
+                if (self.conversation?.messages.last)!.text != notification.userInfo?["text"] as! String {
+                    if self.conversation!.friend == notification.object as! Friend {
+                        self.conversation?.messages.append(JSQMessage(senderId: (self.conversation?.friend.ID)!, displayName: (self.conversation?.friend.name)!, text: notification.userInfo!["text"] as! String))
+                        self.collectionView.reloadData()
+                    }
                 }
             }
         }
