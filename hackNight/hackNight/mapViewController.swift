@@ -32,6 +32,10 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.customMap.delegate = self
         self.position = CLLocationManager()
         
+        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = color
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : color]
+        
         position.delegate = self
         position.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         position.requestWhenInUseAuthorization()

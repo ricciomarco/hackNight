@@ -41,6 +41,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vJx-2K-IY4">
                         <barButtonItem key="rightBarButtonItem" image="support" id="Xpx-cP-ab8">
+                            <color key="tintColor" red="0.78823529410000004" green="0.4549019608" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="operatorCallPressed" destination="mTz-SM-BEu" id="CX7-kU-Dua"/>
                             </connections>

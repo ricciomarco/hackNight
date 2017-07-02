@@ -69,6 +69,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.tabelView.tableFooterView = UIView()
         AppManager.sharedManager.sparkService.login(loginViewController: self) {
             DispatchQueue.main.async {
                 self.tabelView.reloadData()

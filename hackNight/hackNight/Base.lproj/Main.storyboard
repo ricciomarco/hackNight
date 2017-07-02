@@ -27,7 +27,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYr-74-N9j">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" rowHeight="98" id="3UH-yw-Tfr" customClass="ConversationTableViewCell" customModule="hackNight" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="98"/>
@@ -207,7 +207,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="95c-Hx-1gj">
-                        <barButtonItem key="rightBarButtonItem" image="map" id="sVz-WF-wgh">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-map" id="sVz-WF-wgh">
+                            <color key="tintColor" red="0.78823529411764703" green="0.45490196078431372" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="V3L-Lr-uNh" kind="popoverPresentation" popoverAnchorBarButtonItem="sVz-WF-wgh" id="eKj-2u-r2W">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -256,6 +257,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map" width="32" height="32"/>
+        <image name="icons8-map" width="32" height="32"/>
     </resources>
 </document>

@@ -19,6 +19,11 @@ class ConversationViewController: JSQMessagesViewController {
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
     
+    
+    let sendingColor = UIColor(colorLiteralRed: 247/255.0, green: 203/255.0, blue: 87/255.0, alpha: 1.0)
+    let incomingColor = UIColor(colorLiteralRed: 136/255.0, green: 137/255.0, blue: 142/255.0, alpha: 1.0)
+
+    
     override func viewWillAppear(_ animated: Bool) {
         assert((conversation != nil), "Conversation is nil")
         
@@ -131,12 +136,19 @@ class ConversationViewController: JSQMessagesViewController {
         super.viewDidLoad()
         self.title = conversation?.friend.name
         
+        self.inputToolbar.contentView.leftBarButtonItem = nil
+        
         self.senderId = AppManager.sharedManager.currentUser.ID
         self.senderDisplayName = AppManager.sharedManager.currentUser.name
         self.automaticallyScrollsToMostRecentMessage = true
 
-        incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).incomingMessagesBubbleImage(with: UIColor.blue)
-        outgoingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).outgoingMessagesBubbleImage(with: UIColor.red)
+        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = color
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : color]
+        
+        
+        incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).incomingMessagesBubbleImage(with: incomingColor)
+        outgoingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).outgoingMessagesBubbleImage(with: sendingColor)
         
         // Do any additional setup after loading the view.
 
@@ -181,13 +193,18 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
+        let isBot = conversation!.messages[indexPath.item].senderId == self.senderId ? false : true
         
-        let initials = conversation!.messages[indexPath.item].senderId == self.senderId ? AppManager.sharedManager.currentUser.getInitials() : "BT"
-        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials,
-                                                         backgroundColor: UIColor.blue,
-                                                         textColor: UIColor.white,
-                                                         font: UIFont(name: "Arial", size: 17),
-                                                         diameter: 32)
+        if isBot {
+            return JSQMessagesAvatarImageFactory.avatarImage(with: conversation?.friend.image, diameter: 48)
+        } else {
+            return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: AppManager.sharedManager.currentUser.getInitials(),
+                                                             backgroundColor: sendingColor,
+                                                             textColor: UIColor.white,
+                                                             font: UIFont(name: "Arial", size: 17),
+                                                             diameter: 48)
+        }
+        
 
     }
     

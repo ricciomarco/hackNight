@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Reggia_di_Capodimonte_1.JPG",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-bust_filled.png",
       "scale" : "2x"
     },
     {

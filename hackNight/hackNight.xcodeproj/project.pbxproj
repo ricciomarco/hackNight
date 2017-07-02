@@ -106,15 +106,15 @@
 		A90B5DEF1F07985A00D444CD /* hackNight */ = {
 			isa = PBXGroup;
 			children = (
-				A90D7D9A1F08181B00929857 /* map.storyboard */,
-				A90D7D9B1F08181B00929857 /* mapViewController.swift */,
 				CA59B5D81F07E6940024069F /* Models */,
 				CA59B5CA1F07D78E0024069F /* AppManager.swift */,
+				A90D7D9B1F08181B00929857 /* mapViewController.swift */,
 				CA59B5CC1F07D78E0024069F /* ConversationViewController.swift */,
 				A90B5DF01F07985A00D444CD /* AppDelegate.swift */,
 				A90B5DF21F07985A00D444CD /* ViewController.swift */,
 				CA59B5C41F07D1D70024069F /* ConversationTableViewCell.swift */,
 				CA59B5D21F07D7F40024069F /* NearMeCollectionViewCell.swift */,
+				A90D7D9A1F08181B00929857 /* map.storyboard */,
 				CA59B5CB1F07D78E0024069F /* Conversation.storyboard */,
 				A90B5DF41F07985A00D444CD /* Main.storyboard */,
 				A90B5DF71F07985A00D444CD /* Assets.xcassets */,
