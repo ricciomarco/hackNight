@@ -49,7 +49,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome e Cognome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BP-lF-KFG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Nome e Cognome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BP-lF-KFG">
                                                     <rect key="frame" x="116" y="8" width="146.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -68,7 +68,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpM-0F-CxA">
-                                                    <rect key="frame" x="298.5" y="9" width="35.5" height="16.5"/>
+                                                    <rect key="frame" x="264.5" y="9" width="69.5" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -78,8 +78,10 @@
                                                 <constraint firstAttribute="topMargin" secondItem="3BP-lF-KFG" secondAttribute="top" id="Mpn-Ox-frQ"/>
                                                 <constraint firstItem="3BP-lF-KFG" firstAttribute="leading" secondItem="v5U-Yb-6GP" secondAttribute="leadingMargin" constant="108" id="Nq3-ol-E1B"/>
                                                 <constraint firstItem="l6I-Wf-eEX" firstAttribute="leading" secondItem="v5U-Yb-6GP" secondAttribute="leadingMargin" constant="108" id="OuR-YD-8dD"/>
+                                                <constraint firstItem="XpM-0F-CxA" firstAttribute="trailing" secondItem="v5U-Yb-6GP" secondAttribute="trailingMargin" id="Oy1-bY-K3Q"/>
                                                 <constraint firstItem="XpM-0F-CxA" firstAttribute="top" secondItem="v5U-Yb-6GP" secondAttribute="topMargin" constant="1" id="Tuc-X0-nZh"/>
                                                 <constraint firstItem="Ior-wH-VRZ" firstAttribute="baseline" secondItem="iLF-rT-w0q" secondAttribute="baseline" id="VXR-5P-y1r"/>
+                                                <constraint firstItem="XpM-0F-CxA" firstAttribute="leading" secondItem="3BP-lF-KFG" secondAttribute="trailing" constant="2" id="Z0g-44-4c5"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XpM-0F-CxA" secondAttribute="trailing" id="a04-Ch-Ad3"/>
                                                 <constraint firstItem="Ior-wH-VRZ" firstAttribute="leading" secondItem="v5U-Yb-6GP" secondAttribute="leadingMargin" constant="108" id="bvB-GV-gEt"/>
                                                 <constraint firstItem="l6I-Wf-eEX" firstAttribute="top" secondItem="XpM-0F-CxA" secondAttribute="bottom" constant="2" id="cuN-nv-q5k"/>
@@ -103,7 +105,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="6aK-Na-ym6"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-51-C9B">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-51-C9B">
                                 <rect key="frame" x="0.0" y="675" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -187,6 +189,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Z03-Jg-Pi4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="92c-K1-wJP"/>
+                            <constraint firstItem="oE2-51-C9B" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BoN-qb-Ze7"/>
                             <constraint firstItem="Z03-Jg-Pi4" firstAttribute="top" secondItem="oE2-51-C9B" secondAttribute="bottom" constant="-3" id="HQq-km-x7Q"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z03-Jg-Pi4" secondAttribute="bottom" constant="-100" id="M29-Lf-m6p"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z03-Jg-Pi4" secondAttribute="bottom" id="NDW-SS-IyG">
@@ -238,7 +241,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ux9-Hv-V9j" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rj2-7u-ICT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rj2-7u-ICT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -253,6 +256,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map" width="37" height="37"/>
+        <image name="map" width="32" height="32"/>
     </resources>
 </document>

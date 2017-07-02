@@ -106,9 +106,12 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
     }
     
     func userIsCloseTo(location: CLLocation, maxDistance: Double) ->Bool {
-        let distance = (locationManager.location?.distance(from: location))!
-        print(distance)
-        return distance < maxDistance
+        
+        if let locationUtente =  locationManager.location {
+            
+            return locationUtente.distance(from: location) < maxDistance
+        }
+        return false
     }
     
     func onNewMessageUpdate(from friend: Friend, message: Message) {

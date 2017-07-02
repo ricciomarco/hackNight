@@ -28,6 +28,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
+        
         let newConvID = AppManager.sharedManager.openConversationByBotID
         
         if newConvID.characters.count > 0 {
@@ -56,6 +59,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AppManager.sharedManager.sparkService.login(loginViewController: self) {
+            DispatchQueue.main.async {
+                self.tabelView.reloadData()
+            }
+        }
         //self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
 //        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
         
@@ -88,13 +97,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        AppManager.sharedManager.sparkService.login(loginViewController: self) {
-            DispatchQueue.main.async {
-                self.tabelView.reloadData()
-            }
-        }
-    }
     
     func newFriendIn(array: Array<Friend>) -> Bool {
         for friend in array {

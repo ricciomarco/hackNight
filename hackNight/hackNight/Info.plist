@@ -5,7 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>To Check User Location</string>
+	<string>Ti stalkero</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Bello</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Tracciare Utente</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,8 +26,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Ti stalkero</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SanFrancisco.otf</string>
