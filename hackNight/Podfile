@@ -11,6 +11,8 @@ target 'hackNight' do
 
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
+  pod 'PKHUD'
+  pod 'PopupDialog'
   # Pods for hackNight
 
 end

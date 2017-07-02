@@ -21,6 +21,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
     let locationManager = CLLocationManager()
     var friendsList = Array<Friend>()
     var friendsNearMe = Set<Friend>()
+    var openConversationByBotID = ""
     
     private override init() {
         
@@ -55,9 +56,38 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
 //        }
     }
     
+    func conversationByBot(ID: String) -> Conversation? {
+        for conversation in self.currentUser.activeConversations {
+            if conversation.friend.ID == ID {
+                return conversation
+            }
+        }
+        return nil
+    }
+    
+    func friend(named: String) -> Friend? {
+        for friend in friendsList {
+            if friend.name == named {
+                return friend
+            }
+        }
+        return nil
+    }
+    
+    func friend(ID: String) -> Friend? {
+        for friend in friendsList {
+            if friend.ID == ID {
+                return friend
+            }
+        }
+        return nil
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for friend in friendsList {
+
             if userIsCloseTo(location: friend.location, maxDistance: 100) {
+
                 friendsNearMe.insert(friend)
                 
                 let nc = NotificationCenter.default
@@ -76,9 +106,12 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
     }
     
     func userIsCloseTo(location: CLLocation, maxDistance: Double) ->Bool {
-        let distance = (locationManager.location?.distance(from: location))!
-        print(distance)
-        return distance < maxDistance
+        
+        if let locationUtente =  locationManager.location {
+            
+            return locationUtente.distance(from: location) < maxDistance
+        }
+        return false
     }
     
     func onNewMessageUpdate(from friend: Friend, message: Message) {
