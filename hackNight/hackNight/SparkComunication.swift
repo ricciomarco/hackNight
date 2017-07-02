@@ -13,9 +13,8 @@ import JSQMessagesViewController
 
 class SparkComunication: ComunicationInterface {
     var spark: Spark!
-    var friends = Set<Friend>()
-    var roomsToFollow = Set<String>()
-    var roomsDispatchQueue = DispatchQueue(label: "Rooms")
+    var friends = Dictionary<String, Friend>()
+    var roomsToFollow = Dictionary<String, Room>()
     
     var timer = Timer()
     
@@ -43,15 +42,20 @@ class SparkComunication: ComunicationInterface {
     }
     
     func getFriends() -> [Friend] {
-        return Array(friends)
+        return Array(friends.values)
     }
     
     func sendMessage(to friend: Friend, text message: String, completion: @escaping((_ message: Message) -> Void)) {
         spark.messages.post(personEmail: EmailAddress.fromString(friend.ID)!, text: message, completionHandler: {
             responseMessage in
             if let message = responseMessage.result.data {
-                if let room = message.roomId {
-                    self.roomsToFollow.insert(room)
+                if let roomId = message.roomId {
+                    self.spark.rooms.get(roomId: roomId) {
+                        roomResponse in
+                        if let room = roomResponse.result.data {
+                            self.roomsToFollow[roomId] = room
+                        }
+                    }
                 }
                 completion(message)
             }
@@ -68,23 +72,15 @@ class SparkComunication: ComunicationInterface {
     }
     
     private func checkRoomsToFollow() {
-        let rooms = Array(roomsToFollow)
+        let rooms = Array(roomsToFollow.values)
         for r in rooms {
-            spark.messages.list(roomId: r, max: 1) {
+            spark.messages.list(roomId: r.id!, max: 1) {
                 responseMessage in
                 if let message = responseMessage.result.data?[0] {
-                    let friend = self.friends.flatMap({
-                        f -> (Friend?) in
-                        if f.ID == message.personEmail?.toString() {
-                            return f
-                        } else {
-                            return nil
-                        }
-                    })
-                    if friend.count == 1 {
-                        self.delegate?.onNewMessageUpdate(from: friend[0], message: message)
+                    if let friend = self.friends[(message.personEmail?.toString())!] {
+                        self.delegate?.onNewMessageUpdate(from: friend, message: message)
                     } else {
-                        print("C'è un problema tra i bot")
+                        print("[SPARK LOGGER] Nessuna risposta dal bot")
                     }
                 }
             }
@@ -96,8 +92,9 @@ class SparkComunication: ComunicationInterface {
             roomsResponse in
             if let rooms = roomsResponse.result.data {
                 for r in rooms {
-                    self.roomsToFollow.insert(r.id!)
-                    self.friends.insert(BotData.friendByName[r.title!]!)
+                    self.roomsToFollow[r.id!] = r
+                    let friend = BotData.friendByName[r.title!]!
+                    self.friends[friend.ID] = friend
                 }
             }
             self.downloadMessagesHystory(completion: completion)
@@ -105,20 +102,21 @@ class SparkComunication: ComunicationInterface {
     }
     
     private func downloadMessagesHystory(completion: @escaping(() -> Void)) {
-        let rooms = Array(roomsToFollow)
+        let rooms = Array(roomsToFollow.values)
         print("[SPARK LOGGER] Caricando chat precedenti")
         for r in rooms {
-            spark.messages.list(roomId: r) {
+            spark.messages.list(roomId: r.id!) {
                 messagesResponse in
                 if let messages = messagesResponse.result.data {
                     var jsqMessages = [JSQMessage]()
                     for m in messages {
-                        jsqMessages.append(JSQMessage(senderId: m.personEmail!.toString(),
+                        jsqMessages.insert(JSQMessage(senderId: m.personEmail!.toString(),
                                                       displayName: m.personEmail!.toString(),
-                                                      text: m.text!))
+                                                      text: m.text!), at: 0)
                     }
-                    print(jsqMessages)
-                    AppManager.sharedManager.currentUser.activeConversations.append(Conversation(friend: self.friends.first!, messages: jsqMessages))
+                    if let friend = self.friends[BotData.friendByName[r.title!]!.ID] {
+                        AppManager.sharedManager.currentUser.activeConversations.append(Conversation(friend: friend, messages: jsqMessages))
+                    }
                 }
                 completion()
             }

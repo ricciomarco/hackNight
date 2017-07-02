@@ -82,6 +82,12 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
     }
     
     func onNewMessageUpdate(from friend: Friend, message: Message) {
+        let nc = NotificationCenter.default
+        nc.post(name:Notification.Name(rawValue: "ConversationUpdate"),
+                object: friend,
+                userInfo: [
+                    "text": message.text!
+            ])
         print("[\(friend.ID)] \(message.text!)")
     }
 }

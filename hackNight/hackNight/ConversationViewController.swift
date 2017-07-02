@@ -13,7 +13,6 @@ import SparkSDK
 class ConversationViewController: JSQMessagesViewController {
 
     var conversation: Conversation?
-//    var messages = [JSQMessage]()
 
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
@@ -28,17 +27,27 @@ class ConversationViewController: JSQMessagesViewController {
         
         self.senderId = AppManager.sharedManager.currentUser.ID
         self.senderDisplayName = AppManager.sharedManager.currentUser.name
-        
-//        let message = JSQMessage(senderId: self.senderId, displayName: "IO", text: "aòlsjda kls dalsjd alksd as")
-//        let message2 = JSQMessage(senderId: "654321", displayName: "Altro", text: "alsdalnskads lkasndadlkn asldkn dknsl !!!")
-//        
-//        messages.append(message!)
-//        messages.append(message2!)
+        self.automaticallyScrollsToMostRecentMessage = true
 
         incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).incomingMessagesBubbleImage(with: UIColor.blue)
         outgoingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleRegular(), capInsets: UIEdgeInsets.zero).outgoingMessagesBubbleImage(with: UIColor.red)
         
         // Do any additional setup after loading the view.
+
+        let nc = NotificationCenter.default // Note that default is now a property, not a method call
+        nc.addObserver(forName: Notification.Name(rawValue: "ConversationUpdate"), object: (conversation?.friend)!, queue: nil) {
+            notification in
+            if let isUserSending = notification.userInfo?["isUserSending"] {
+                self.conversation?.messages.append(JSQMessage(senderId: AppManager.sharedManager.currentUser.ID, displayName: AppManager.sharedManager.currentUser.name, text: notification.userInfo!["text"] as! String))
+                self.collectionView.reloadData()
+            } else {
+                if (self.conversation?.messages.last)!.text != notification.userInfo!["text"] as! String {
+                    self.conversation?.messages.append(JSQMessage(senderId: (self.conversation?.friend.ID)!, displayName: (self.conversation?.friend.name)!, text: notification.userInfo!["text"] as! String))
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +83,14 @@ class ConversationViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         AppManager.sharedManager.sparkService.sendMessage(to: conversation!.friend, text: text) {
             message in
-//            print(message)
+            let nc = NotificationCenter.default
+            nc.post(name:Notification.Name(rawValue: "ConversationUpdate"),
+                    object: (self.conversation?.friend)!,
+                    userInfo: [
+                        "isUserSending": true,
+                        "text": message.text!
+                ])
+            self.inputToolbar.contentView.textView.text = ""
         }
     }
     
