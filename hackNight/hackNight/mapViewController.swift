@@ -39,6 +39,7 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         self.customMap.showsUserLocation = true
 
+        var arrayAnnotations = Array<MKPointAnnotation>()
         
         for friend in AppManager.sharedManager.friendsList {
             
@@ -48,9 +49,11 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationToAdd.subtitle = friend.locationName
             annotationToAdd.coordinate = friend.location.coordinate
             
-            self.customMap.showAnnotations([annotationToAdd], animated: true)
-            
+            arrayAnnotations.append(annotationToAdd)
         }
+        
+        self.customMap.showAnnotations(arrayAnnotations, animated: true)
+
         
     }
     

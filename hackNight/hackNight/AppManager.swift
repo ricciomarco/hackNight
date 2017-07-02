@@ -35,6 +35,7 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
         locationManager.startUpdatingLocation()
         
         friendsList = sparkService.getFriends()
+        
         sparkService.delegate = self
         
 

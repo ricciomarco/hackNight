@@ -126,6 +126,7 @@ class SparkComunication: ComunicationInterface {
 
 struct BotData {
     public static let friendByName = [
-        "CapeMountainBot": Friend(ID: "capemountainbot@sparkbot.io", name: "Museo di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
+        "CapeMountainBot": Friend(ID: "capemountainbot@sparkbot.io", name: "Museo di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"),
+        "StatuaDelGigante": Friend(ID: "statuadelgigante@sparkbot.io", name: "Statua del Gigante", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
     ]
 }
