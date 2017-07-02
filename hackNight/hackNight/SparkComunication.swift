@@ -21,8 +21,8 @@ class SparkComunication: ComunicationInterface {
     var delegate: ComunicationDelegate?
     
     init() {
-        for (name, friend) in BotData.friendByName {
-            friends[name] = friend
+        for (_, friend) in BotData.friendByName {
+            friends[friend.ID] = friend
         }
     }
     
@@ -99,8 +99,9 @@ class SparkComunication: ComunicationInterface {
             if let rooms = roomsResponse.result.data {
                 for r in rooms {
                     self.roomsToFollow[r.id!] = r
-                    let friend = BotData.friendByName[r.title!]!
-                    self.friends[friend.ID] = friend
+                    if let friend = BotData.friendByName[r.title!] {
+                        self.friends[friend.ID] = friend
+                    }
                 }
             }
             self.downloadMessagesHystory(completion: completion)
@@ -133,6 +134,7 @@ class SparkComunication: ComunicationInterface {
 struct BotData {
     public static let friendByName = [
         "CapeMountainBot": Friend(ID: "capemountainbot@sparkbot.io", name: "Museo di Capodimonte", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"),
-        "StatuaDelGigante": Friend(ID: "statuadelgigante@sparkbot.io", name: "Statua del Gigante", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
+        "StatuaDelGigante": Friend(ID: "statuadelgigante@sparkbot.io", name: "Statua del Gigante", location: CLLocation(latitude: 37.33155713, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG"),
+        "SanGirolamo": Friend(ID: "sangirolamo@sparkbot.io", name: "San Girolamo", location: CLLocation(latitude: 37.331558, longitude: -122.03071078), locationName: "Capodimonte", image: UIImage(named: "Placeholder"), imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Reggia_di_Capodimonte_1.JPG/260px-Reggia_di_Capodimonte_1.JPG")
     ]
 }
