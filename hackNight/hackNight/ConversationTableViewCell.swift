@@ -10,6 +10,7 @@ import UIKit
 
 class ConversationTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!

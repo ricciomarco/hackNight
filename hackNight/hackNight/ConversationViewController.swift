@@ -12,8 +12,12 @@ import SparkSDK
 import PKHUD
 import PopupDialog
 
-class ConversationViewController: JSQMessagesViewController {
+class ConversationViewController: JSQMessagesViewController, JSQMessagesKeyboardControllerDelegate {
 
+    var shadowView2: UIView?
+    var observer: NSObjectProtocol?
+
+    var shouldShowError = true
     var conversation: Conversation?
 
     var incomingBubble: JSQMessagesBubbleImage!
@@ -40,7 +44,16 @@ class ConversationViewController: JSQMessagesViewController {
         
     }
     
-
+    func keyboardController(_ keyboardController: JSQMessagesKeyboardController!, keyboardDidChangeFrame keyboardFrame: CGRect) {
+        print("lakdnslkdnalksdn")
+        var rect = self.collectionView.frame
+        rect.origin.y = keyboardFrame.origin.y - rect.size.height
+        self.collectionView.frame = rect
+        
+        rect = self.inputToolbar.frame
+        rect.origin.y = keyboardFrame.origin.y - rect.size.height
+        self.inputToolbar.frame = rect
+    }
     
     @IBAction func operatorCallPressed() {
         print("BeginningCall")
@@ -69,8 +82,10 @@ class ConversationViewController: JSQMessagesViewController {
                             let buttonOne = CancelButton(title: "Riaggancia") {
                                 print("You canceled the car dialog.")
                                 if call.status == CallStatus.connected {
+                                    self.shouldShowError = false
                                     call.hangup(completionHandler: { (error) in
                                         popup.dismiss()
+                                        self.shouldShowError = true
                                     })
                                 }
                             }
@@ -87,7 +102,9 @@ class ConversationViewController: JSQMessagesViewController {
                     }
                     call.onDisconnected = { reason in
                         print("___Disconnected")
-                        HUD.flash(.error , delay: 1.0)
+                        if self.shouldShowError {
+                            HUD.flash(.error , delay: 1.0)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -128,21 +145,44 @@ class ConversationViewController: JSQMessagesViewController {
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         self.scrollToBottom(animated: true)
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.keyboardController.beginListeningForKeyboard()
+        self.keyboardController.delegate = self
+        
+        
         self.title = conversation?.friend.name
         
+        
+        
+        shadowView2 = UIView(frame: CGRect(x: 0, y: 63, width: self.view.frame.size.width, height: 1))
+        self.view.addSubview(shadowView2!)
+        self.view.bringSubview(toFront: shadowView2!)
+        shadowView2?.backgroundColor = UIColor.red
+        shadowView2?.layer.shadowColor = UIColor.black.cgColor
+        shadowView2?.layer.shadowOpacity = 1.0
+        shadowView2?.layer.shadowRadius = 4
+        shadowView2?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        shadowView2?.layer.masksToBounds = false
+        
+        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+
+        
         self.inputToolbar.contentView.leftBarButtonItem = nil
+        self.inputToolbar.contentView.rightBarButtonItem.setTitleColor(color, for: UIControlState.normal)
         
         self.senderId = AppManager.sharedManager.currentUser.ID
         self.senderDisplayName = AppManager.sharedManager.currentUser.name
         self.automaticallyScrollsToMostRecentMessage = true
 
-        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = color
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : color]
         
@@ -153,7 +193,7 @@ class ConversationViewController: JSQMessagesViewController {
         // Do any additional setup after loading the view.
 
         let nc = NotificationCenter.default // Note that default is now a property, not a method call
-        nc.addObserver(forName: Notification.Name(rawValue: "ConversationUpdate"), object: (conversation?.friend)!, queue: nil) {
+        observer = nc.addObserver(forName: Notification.Name(rawValue: "ConversationUpdate"), object: (conversation?.friend)!, queue: nil) {
             notification in
             if let isUserSending = notification.userInfo?["isUserSending"] {
                 self.conversation?.messages.append(JSQMessage(senderId: AppManager.sharedManager.currentUser.ID, displayName: AppManager.sharedManager.currentUser.name, text: notification.userInfo!["text"] as! String))
@@ -171,6 +211,11 @@ class ConversationViewController: JSQMessagesViewController {
             }
         }
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        nc.removeObserver(observer!)
     }
 
     override func didReceiveMemoryWarning() {

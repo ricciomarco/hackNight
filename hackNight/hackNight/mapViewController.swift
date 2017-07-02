@@ -15,7 +15,8 @@ class CustomPointAnnotation: MKPointAnnotation {
 
 class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    
+    var shadowView2: UIView?
+
     @IBOutlet weak var customMap: MKMapView!
     
     var position: CLLocationManager!
@@ -40,6 +41,16 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         position.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         position.requestWhenInUseAuthorization()
         position.startUpdatingLocation()
+        
+        shadowView2 = UIView(frame: CGRect(x: 0, y: 63, width: self.view.frame.size.width, height: 1))
+        self.view.addSubview(shadowView2!)
+        self.view.bringSubview(toFront: shadowView2!)
+        shadowView2?.backgroundColor = UIColor.red
+        shadowView2?.layer.shadowColor = UIColor.black.cgColor
+        shadowView2?.layer.shadowOpacity = 1.0
+        shadowView2?.layer.shadowRadius = 4
+        shadowView2?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        shadowView2?.layer.masksToBounds = false
         
         self.customMap.showsUserLocation = true
 

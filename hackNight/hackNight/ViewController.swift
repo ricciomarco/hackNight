@@ -13,6 +13,8 @@ import JSQMessagesViewController
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    var shadowView2: UIView?
+    
     @IBOutlet weak var shadowView: UIView!
 
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
@@ -69,6 +71,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "ArtMates"
+        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = color
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : color]
         
         self.tabelView.tableFooterView = UIView()
         AppManager.sharedManager.sparkService.login(loginViewController: self) {
@@ -81,10 +87,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        conversationsArray = AppManager.sharedManager.currentUser.activeConversations
         
         shadowView.layer.shadowColor = UIColor.black.cgColor
-        shadowView.layer.shadowOpacity = 0.8
-        shadowView.layer.shadowRadius = 2
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: -2)
+        shadowView.layer.shadowOpacity = 1.0
+        shadowView.layer.shadowRadius = 4
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
         shadowView.layer.masksToBounds = false
+        
+        
+        shadowView2 = UIView(frame: CGRect(x: 0, y: 63, width: self.view.frame.size.width, height: 1))
+        self.view.addSubview(shadowView2!)
+        self.view.bringSubview(toFront: shadowView2!)
+        shadowView2?.backgroundColor = UIColor.red
+        shadowView2?.layer.shadowColor = UIColor.black.cgColor
+        shadowView2?.layer.shadowOpacity = 1.0
+        shadowView2?.layer.shadowRadius = 4
+        shadowView2?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        shadowView2?.layer.masksToBounds = false
         
         let nc = NotificationCenter.default // Note that default is now a property, not a method call
         nc.addObserver(forName:Notification.Name(rawValue:"FriendListUpdated"),
@@ -174,6 +191,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.profileImageView.image = friend.image
 
+        
+        let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+        cell.imageContainerView.layer.borderWidth = 1.0
+        cell.imageContainerView.layer.borderColor = color.cgColor
+        
+        
         if let lastMessage = conversation.messages.last {
             let dateFormatter = DateFormatter()
             
@@ -222,6 +245,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let image = friend.image {
             cell.imageView.image = image
+            
+            let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = color.cgColor
         }
         
         return cell
