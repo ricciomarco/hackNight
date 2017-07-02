@@ -21,8 +21,8 @@ class SparkComunication: ComunicationInterface {
     var delegate: ComunicationDelegate?
     
     init() {
-        for (name, friend) in BotData.friendByName {
-            friends[name] = friend
+        for (_, friend) in BotData.friendByName {
+            friends[friend.ID] = friend
         }
     }
     
@@ -99,8 +99,9 @@ class SparkComunication: ComunicationInterface {
             if let rooms = roomsResponse.result.data {
                 for r in rooms {
                     self.roomsToFollow[r.id!] = r
-                    let friend = BotData.friendByName[r.title!]!
-                    self.friends[friend.ID] = friend
+                    if let friend = BotData.friendByName[r.title!] {
+                        self.friends[friend.ID] = friend
+                    }
                 }
             }
             self.downloadMessagesHystory(completion: completion)
