@@ -49,6 +49,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let friend = AppManager.sharedManager.friend(ID: ID) {
                 conversationController.conversation = Conversation(friend: friend,
                                                                    messages: Array<JSQMessage>())
+                conversationController.didPressSend(nil, withMessageText: "Hello",
+                                                    senderId: AppManager.sharedManager.currentUser.ID,
+                                                    senderDisplayName: AppManager.sharedManager.currentUser.name,
+                                                    date: Date())
+                AppManager.sharedManager.currentUser.activeConversations.append(conversationController.conversation!)
             }
             
         }
@@ -64,6 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DispatchQueue.main.async {
                 self.tabelView.reloadData()
             }
+            AppManager.sharedManager.friendsList = AppManager.sharedManager.sparkService.getFriends()
         }
         //self.perform(#selector(showCollection), with: nil, afterDelay: 1.0)
 //        conversationsArray = AppManager.sharedManager.currentUser.activeConversations

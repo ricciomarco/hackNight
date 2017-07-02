@@ -39,7 +39,7 @@ class ConversationViewController: JSQMessagesViewController {
         if AppManager.sharedManager.userIsCloseTo(location: (self.conversation?.friend.location)!, maxDistance: 100) {
             HUD.show(.labeledProgress(title: "Attendere", subtitle: "Contattando la Guida"))
             
-            let address = "roberta.avino@hotmail.it"
+            let address = "claudio.santonastaso@gmail.com"
             let mediaOption = MediaOption.audioOnly()
             
             AppManager.sharedManager.sparkService.spark.phone.dial(address, option:mediaOption) { ret in
@@ -170,7 +170,7 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
         
-        let initials = conversation!.messages[indexPath.item].senderId == self.senderId ? "XX" : AppManager.sharedManager.currentUser.getInitials()
+        let initials = conversation!.messages[indexPath.item].senderId == self.senderId ? AppManager.sharedManager.currentUser.getInitials() : "BT"
         return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials,
                                                          backgroundColor: UIColor.blue,
                                                          textColor: UIColor.white,
