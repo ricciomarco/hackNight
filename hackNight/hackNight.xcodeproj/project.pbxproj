@@ -19,6 +19,7 @@
 		A90D7D991F08181400929857 /* ComunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90D7D961F08181400929857 /* ComunicationDelegate.swift */; };
 		A90D7D9C1F08181B00929857 /* map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90D7D9A1F08181B00929857 /* map.storyboard */; };
 		A90D7D9D1F08181B00929857 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90D7D9B1F08181B00929857 /* mapViewController.swift */; };
+		CA4212471F0913D50015342F /* visitorPath.gpx in Resources */ = {isa = PBXBuildFile; fileRef = CA4212461F0913D50015342F /* visitorPath.gpx */; };
 		CA59B5C51F07D1D70024069F /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5C41F07D1D70024069F /* ConversationTableViewCell.swift */; };
 		CA59B5CE1F07D78E0024069F /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA59B5CA1F07D78E0024069F /* AppManager.swift */; };
 		CA59B5CF1F07D78E0024069F /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA59B5CB1F07D78E0024069F /* Conversation.storyboard */; };
@@ -46,6 +47,7 @@
 		A90D7D961F08181400929857 /* ComunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComunicationDelegate.swift; sourceTree = "<group>"; };
 		A90D7D9A1F08181B00929857 /* map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = map.storyboard; sourceTree = "<group>"; };
 		A90D7D9B1F08181B00929857 /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		CA4212461F0913D50015342F /* visitorPath.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = visitorPath.gpx; sourceTree = "<group>"; };
 		CA59B5C41F07D1D70024069F /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		CA59B5CA1F07D78E0024069F /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		CA59B5CB1F07D78E0024069F /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		A90B5DE41F07985A00D444CD = {
 			isa = PBXGroup;
 			children = (
+				CA4212461F0913D50015342F /* visitorPath.gpx */,
 				A90B5DEF1F07985A00D444CD /* hackNight */,
 				A90B5DEE1F07985A00D444CD /* Products */,
 				93CB410A65114BF778257FD7 /* Pods */,
@@ -203,6 +206,7 @@
 			files = (
 				A90B5DFB1F07985A00D444CD /* LaunchScreen.storyboard in Resources */,
 				A90D7D9C1F08181B00929857 /* map.storyboard in Resources */,
+				CA4212471F0913D50015342F /* visitorPath.gpx in Resources */,
 				A90B5E031F07BB6500D444CD /* SanFrancisco.otf in Resources */,
 				CA59B5CF1F07D78E0024069F /* Conversation.storyboard in Resources */,
 				A90B5DF81F07985A00D444CD /* Assets.xcassets in Resources */,

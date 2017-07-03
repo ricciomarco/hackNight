@@ -65,11 +65,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         
+        
         self.navigationController?.pushViewController(conversationController, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AppManager.sharedManager.scheduleNotification(date: nil, title: "Giuseppe Garibaldi", subtitle: "Sei a Teano! Qui ho consegnato lo scettro dell'Italia meridionale al Re Vittorio Emanuele Secondo", location: nil)
         
         self.title = "ArtMates"
         let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)

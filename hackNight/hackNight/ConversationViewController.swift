@@ -14,9 +14,10 @@ import PopupDialog
 
 class ConversationViewController: JSQMessagesViewController, JSQMessagesKeyboardControllerDelegate {
 
+    @IBOutlet weak var supportItem: UIBarButtonItem!
     var shadowView2: UIView?
     var observer: NSObjectProtocol?
-
+    var observer2: NSObjectProtocol?
     var shouldShowError = true
     var conversation: Conversation?
 
@@ -155,6 +156,18 @@ class ConversationViewController: JSQMessagesViewController, JSQMessagesKeyboard
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let newArray = Array(AppManager.sharedManager.friendsNearMe)
+        if newArray.contains((self.conversation?.friend)!) {
+            self.setGuideEnabled(x: true)
+            //print("________________ddfsdfsd")
+            
+        } else {
+            self.setGuideEnabled(x: false)
+            //print("_____________ds___ddfsdfsd")
+            
+        }
+        
         self.keyboardController.beginListeningForKeyboard()
         self.keyboardController.delegate = self
         
@@ -210,7 +223,34 @@ class ConversationViewController: JSQMessagesViewController, JSQMessagesKeyboard
                 }
             }
         }
+        
+        observer2 = nc.addObserver(forName:Notification.Name(rawValue:"FriendListUpdated"),
+                                   object:nil, queue:nil) {
+                                    notification in
+                                    let newArray = Array(AppManager.sharedManager.friendsNearMe)
+                                    if newArray.contains((self.conversation?.friend)!) {
+                                        self.setGuideEnabled(x: true)
+                                        //print("________________ddfsdfsd")
 
+                                    } else {
+                                        self.setGuideEnabled(x: false)
+                                        //print("_____________ds___ddfsdfsd")
+
+                                    }
+                                    
+        }
+    }
+    
+    func setGuideEnabled( x: Bool) {
+        if x {
+            let color = UIColor(colorLiteralRed: 201/255.0, green: 116/255.0, blue: 28/255.0, alpha: 1.0)
+
+            supportItem.tintColor = color
+        } else {
+            let color = UIColor(colorLiteralRed: 121/255.0, green: 121/255.0, blue: 121/255.0, alpha: 1.0)
+
+            supportItem.tintColor = color
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

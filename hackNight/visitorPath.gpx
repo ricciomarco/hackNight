@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="gpxgenerator.com">
+<wpt lat="40.874083377031134" lon="14.252498634159565">
+    <ele>154.14</ele>
+    <time>2017-07-02T10:22:30Z</time>
+</wpt>
+<wpt lat="40.867282" lon="14.250979">
+    <ele>150.32</ele>
+    <time>2017-07-02T10:23:01Z</time>
+</wpt>
+<wpt lat="40.869773" lon="14.250562">
+    <ele>151.55</ele>
+    <time>2017-07-02T10:24:13Z</time>
+</wpt>
+<wpt lat="40.867021" lon="14.250571">
+    <ele>13.66</ele>
+    <time>2017-07-02T10:25:00Z</time>
+</wpt>
+<wpt lat="40.852284" lon="14.268620">
+    <ele>13.38</ele>
+    <time>2017-07-02T10:26:10Z</time>
+</wpt>
+</gpx>

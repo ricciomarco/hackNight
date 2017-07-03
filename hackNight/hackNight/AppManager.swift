@@ -10,7 +10,7 @@ import CoreLocation
 import UIKit
 import SparkSDK
 import JSQMessagesViewController
-
+import UserNotifications
 //let DEBUG_FLAG = true
 
 final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegate {
@@ -64,6 +64,29 @@ final class AppManager: NSObject, CLLocationManagerDelegate, ComunicationDelegat
             }
         }
         return nil
+    }
+    
+    func scheduleNotification(date: Date?, title: String, subtitle: String, location: CLLocation?) {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+            if granted {
+                let notification = UNMutableNotificationContent()
+                notification.title = title
+                notification.body = subtitle
+                notification.sound = UNNotificationSound.default()
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 4, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: "MyID", content: notification, trigger: trigger)
+                
+                center.add(request, withCompletionHandler: { (error) in
+                    if error == nil {
+                        print("Added!!!")
+                    }
+                })
+                
+            }
+        }
     }
     
     func friend(named: String) -> Friend? {

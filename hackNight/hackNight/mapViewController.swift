@@ -82,7 +82,7 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.userPosition = userLocation.coordinate
             
             
-            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let span = MKCoordinateSpanMake(0.01, 0.01)
             
             let region = MKCoordinateRegion(center: userPosition, span: span)
             
